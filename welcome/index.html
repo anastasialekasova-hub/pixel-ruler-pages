@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pixel Ruler is installed</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&display=swap">
+<!-- Paste your Google Analytics tag here -->
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  :root {
+    --bg: #131824;
+    --surface: #1b2231;
+    --raised: #222b3d;
+    --border: #2b3446;
+    --text: #eef2f8;
+    --muted: #97a3b8;
+    --accent: #6ea8ff;
+    --accent-ink: #0f1420;
+    --red: #e5484d;
+  }
+  body {
+    background: var(--bg); color: var(--text);
+    font: 17px/1.55 "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+    font-synthesis: none;
+  }
+  .shell { max-width: 780px; margin: 0 auto; padding: 32px 24px 80px; }
+
+  .brand { display: flex; align-items: center; gap: 13px; margin-bottom: 26px; }
+  .mark {
+    position: relative; width: 40px; height: 40px; border-radius: 22%;
+    background: #2f68e8; flex: 0 0 auto; overflow: hidden;
+  }
+  .mark b {
+    position: absolute; left: 11%; right: 11%; top: 34%; bottom: 34%;
+    border-radius: 7%; background: #f5f8fd;
+  }
+  .mark i { position: absolute; top: 34%; width: 3.6%; background: #2f68e8; }
+  .mark i:nth-of-type(1) { left: 24%; height: 10%; }
+  .mark i:nth-of-type(2) { left: 37%; height: 10%; }
+  .mark i:nth-of-type(3) { left: 50%; height: 17%; }
+  .mark i:nth-of-type(4) { left: 63%; height: 10%; }
+  .mark i:nth-of-type(5) { left: 76%; height: 10%; }
+  .brand span { font-size: 15px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+
+  h1 { font-size: 31px; line-height: 1.16; letter-spacing: -0.02em; text-wrap: balance; }
+  h1 em { font-style: normal; color: var(--accent); }
+  .lede { margin-top: 12px; font-size: 18px; color: var(--muted); max-width: 56ch; }
+
+  .step { margin-top: 34px; }
+  .step h2 { font-size: 24px; letter-spacing: -0.01em; }
+  .step > p { margin-top: 8px; color: var(--muted); max-width: 58ch; }
+
+  /* The browser mock-ups break out of the text column so the UI reads big. */
+  .shot {
+    position: relative; margin-top: 18px; border-radius: 14px;
+    border: 1px solid var(--border); box-shadow: 0 18px 50px rgba(0,0,0,.45);
+    background: var(--surface); padding: 46px 30px 34px;
+    width: min(94vw, 1000px); left: 50%; transform: translateX(-50%);
+  }
+
+  /* ---- drawn Chrome frame ---- */
+  .frame { position: relative; border-radius: 10px; background: #f1f3f4; color: #202124; padding: 8px 10px; }
+  /* The dropdown and the popup are positioned inside the frame, so the frame
+     reserves room for them — otherwise they spill over the next section. */
+  .frame.with-menu { min-height: 214px; }
+  .frame.with-popup { min-height: 196px; }
+  .bar { display: flex; align-items: center; gap: 10px; }
+  .dots { display: flex; gap: 6px; padding-right: 4px; }
+  .dots i { width: 11px; height: 11px; border-radius: 50%; background: #dadce0; }
+  .nav { display: flex; gap: 12px; color: #5f6368; }
+  .omni {
+    flex: 1; height: 32px; border-radius: 16px; background: #fff;
+    display: flex; align-items: center; gap: 9px; padding: 0 14px;
+    font-size: 13px; color: #5f6368; border: 1px solid #e0e2e6;
+  }
+  .tools { display: flex; align-items: center; gap: 10px; }
+  .chip {
+    width: 30px; height: 30px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; color: #5f6368;
+  }
+  .chip.on { background: #e8eaed; }
+  .pinned {
+    width: 22px; height: 22px; border-radius: 5px; background: #2f68e8;
+    position: relative; overflow: hidden; flex: 0 0 auto;
+  }
+  .pinned b { position: absolute; left: 11%; right: 11%; top: 34%; bottom: 34%; border-radius: 2px; background: #f5f8fd; }
+  .avatar { width: 26px; height: 26px; border-radius: 50%; background: #c9cdd3; }
+
+  /* a faint page behind the toolbar, so the frame reads as a browser */
+  .page { margin-top: 10px; padding: 34px 0 18px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .page .logo { width: 104px; height: 34px; border-radius: 7px; background: #e3e6ea; }
+  .page .search { width: min(420px, 60%); height: 34px; border-radius: 17px; background: #fff; border: 1px solid #e0e2e6; }
+  .page .keys { display: flex; gap: 10px; }
+  .page .keys i { width: 74px; height: 22px; border-radius: 5px; background: #eceef1; }
+
+  /* extensions dropdown */
+  .menu {
+    position: absolute; right: 108px; top: 54px; width: 300px;
+    background: #fff; border-radius: 12px; box-shadow: 0 10px 32px rgba(0,0,0,.28);
+    padding: 12px 0 8px; font-size: 14px;
+  }
+  .menu h3 { font-size: 15px; font-weight: 700; padding: 0 16px 10px; color: #202124; }
+  .menu .row { display: flex; align-items: center; gap: 11px; padding: 9px 16px; }
+  .menu .row.hi { background: #e8f0fe; }
+  .menu .row .name { flex: 1; color: #202124; }
+  .menu .row .pin { color: #5f6368; display: flex; }
+  .menu .row.hi .pin { color: #1a73e8; }
+
+  /* popup mock */
+  .popup {
+    position: absolute; right: 44px; top: 54px; width: 300px; z-index: 2;
+    background: #f7f9fc; border-radius: 12px; box-shadow: 0 10px 32px rgba(0,0,0,.28);
+    padding: 13px 14px 15px; color: #1b2231; font-size: 12.5px;
+  }
+  .popup .ph { display: flex; align-items: center; justify-content: space-between; margin-bottom: 11px; }
+  .popup .pt { font-size: 11px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
+  .popup .pv { font-size: 11px; color: #64748b; }
+  .popup .cta {
+    height: 40px; border-radius: 9px; background: #2f68e8; color: #fff;
+    display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; font-size: 13px;
+  }
+  .popup .hint { margin-top: 9px; color: #64748b; font-size: 11px; line-height: 1.45; }
+
+  /* ---- red arrows: the only marker people read as "important, not an ad" ---- */
+  .arrow { position: absolute; pointer-events: none; z-index: 3; }
+  .num {
+    position: absolute; z-index: 4; width: 30px; height: 30px; border-radius: 50%;
+    background: var(--red); color: #fff; font-weight: 700; font-size: 16px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,.35);
+  }
+
+  .target-block { margin-top: 44px; }
+  /* The box must stay exactly 320 × 180 for the claim above it to be true,
+     so on a very narrow screen the box scrolls rather than shrinks. */
+  .target-wrap { margin-top: 16px; overflow-x: auto; }
+  .target {
+    width: 320px; height: 180px;
+    border-radius: 12px; background: linear-gradient(180deg, #24406e, #1d3157);
+    border: 1px solid #35507f;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 19px; letter-spacing: -0.01em;
+  }
+  .target-note { margin-top: 10px; font-size: 15px; color: var(--muted); }
+
+  footer { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--border); font-size: 14px; color: #7f8b9e; }
+  footer a { color: var(--muted); }
+
+  @media (max-width: 720px) {
+    /* Narrower gutters so the 320px target stays exactly 320px — a box
+       labelled "exactly 320 × 180" must not be resized by the layout. */
+    .shell { padding: 28px 16px 64px; }
+    /* No breakout on phones: the frame stays inside the column and the omnibox
+       is allowed to shrink, otherwise its min-content width pushes the page wide. */
+    .shot { width: auto; left: auto; transform: none; padding: 18px 14px 24px; }
+    .omni { min-width: 0; overflow: hidden; }
+    .bar { gap: 7px; }
+    .frame.with-menu, .frame.with-popup { min-height: 0; }
+    .menu, .popup { position: static; width: auto; margin-top: 14px; }
+    .arrow, .num { display: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="shell">
+    <div class="brand">
+      <span class="mark"><b></b><i></i><i></i><i></i><i></i><i></i></span>
+      <span>Pixel Ruler</span>
+    </div>
+
+    <h1>Pixel Ruler is installed. Pin it, and every page becomes <em>measurable</em>.</h1>
+    <p class="lede">Chrome hides new extensions behind the puzzle icon — pin it first, it takes five seconds.</p>
+
+    <section class="step">
+      <h2>Pin it to the toolbar</h2>
+      <p>Click the puzzle icon, then the pin next to Pixel Ruler.</p>
+      <div class="shot">
+        <div class="frame with-menu">
+          <div class="bar">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <span class="nav">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M11 4l-5 5 5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M7 4l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="omni">
+              <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="3" y="6.5" width="8" height="5.5" rx="1.2" stroke="currentColor" stroke-width="1.3"/><path d="M5 6.5V4.8a2 2 0 1 1 4 0v1.7" stroke="currentColor" stroke-width="1.3"/></svg>
+              google.com
+            </span>
+            <span class="tools">
+              <span class="chip on" aria-label="Extensions">
+                <svg width="19" height="19" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7.5 3.2a1.6 1.6 0 1 1 3.2 0V4h2.1c.6 0 1 .4 1 1v2.1h.8a1.6 1.6 0 1 1 0 3.2h-.8V12.5c0 .6-.4 1-1 1h-2.4v-.9a1.6 1.6 0 1 0-3.2 0v.9H5c-.6 0-1-.4-1-1v-2.4h.8a1.6 1.6 0 1 0 0-3.2H4V5c0-.6.4-1 1-1h2.5v-.8z" stroke="currentColor" stroke-width="1.35" stroke-linejoin="round"/></svg>
+              </span>
+              <span class="avatar"></span>
+            </span>
+          </div>
+
+          <div class="page">
+            <span class="logo"></span>
+            <span class="search"></span>
+            <span class="keys"><i></i><i></i></span>
+          </div>
+
+          <div class="menu">
+            <h3>Extensions</h3>
+            <div class="row hi">
+              <span class="pinned"><b></b></span>
+              <span class="name">Pixel Ruler</span>
+              <span class="pin">
+                <svg width="17" height="17" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M11.4 2.6l4 4-1.5 1.5-.7-.2-3 3 .3 2.4-1.3 1.3-3-3-3.2 3.2-.9.5.5-.9L5.8 11l-3-3L4.1 6.7l2.4.3 3-3-.2-.7 1.5-1.5z" fill="currentColor"/></svg>
+              </span>
+            </div>
+            <div class="row"><span class="pinned" style="background:#cbd5e1"></span><span class="name" style="color:#5f6368">Another extension</span><span class="pin"><svg width="17" height="17" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M11.4 2.6l4 4-1.5 1.5-.7-.2-3 3 .3 2.4-1.3 1.3-3-3-3.2 3.2-.9.5.5-.9L5.8 11l-3-3L4.1 6.7l2.4.3 3-3-.2-.7 1.5-1.5z" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></span></div>
+          </div>
+
+          <!-- 1: the puzzle icon (right 61px, top 24px inside the frame) -->
+          <span class="num" style="right: 99px; top: -39px;">1</span>
+          <svg class="arrow" style="right: 40px; top: -32px;" width="86" height="62" viewBox="0 0 86 62" fill="none" aria-hidden="true">
+            <path d="M21 14C39 17 58 23 65 38" stroke="#e5484d" stroke-width="3.4" stroke-linecap="round"/>
+            <path d="M65 38L56.3 29.6M65 38L65.5 26" stroke="#e5484d" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+
+          <!-- 2: the pin next to Pixel Ruler, arrow coming up from below -->
+          <span class="num" style="right: 22px; top: 150px;">2</span>
+          <svg class="arrow" style="right: 46px; top: 96px;" width="96" height="70" viewBox="0 0 96 70" fill="none" aria-hidden="true">
+            <path d="M66 58C66 40 52 26 34 20" stroke="#e5484d" stroke-width="3.4" stroke-linecap="round"/>
+            <path d="M34 20l11 1M34 20l3 10" stroke="#e5484d" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="step">
+      <h2>Then click the icon and drag</h2>
+      <p>One click turns the ruler on for the page you are looking at. Drag between any two points to
+         read the distance in CSS pixels — the same numbers DevTools shows.</p>
+      <div class="shot">
+        <div class="frame with-popup">
+          <div class="bar">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <span class="nav">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M11 4l-5 5 5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M7 4l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="omni">
+              <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="3" y="6.5" width="8" height="5.5" rx="1.2" stroke="currentColor" stroke-width="1.3"/><path d="M5 6.5V4.8a2 2 0 1 1 4 0v1.7" stroke="currentColor" stroke-width="1.3"/></svg>
+              google.com
+            </span>
+            <span class="tools">
+              <span class="pinned"><b></b></span>
+              <span class="chip"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7.5 3.2a1.6 1.6 0 1 1 3.2 0V4h2.1c.6 0 1 .4 1 1v2.1h.8a1.6 1.6 0 1 1 0 3.2h-.8V12.5c0 .6-.4 1-1 1h-2.4v-.9a1.6 1.6 0 1 0-3.2 0v.9H5c-.6 0-1-.4-1-1v-2.4h.8a1.6 1.6 0 1 0 0-3.2H4V5c0-.6.4-1 1-1h2.5v-.8z" stroke="currentColor" stroke-width="1.35" stroke-linejoin="round"/></svg></span>
+              <span class="avatar"></span>
+            </span>
+          </div>
+
+          <div class="page">
+            <span class="logo"></span>
+            <span class="search"></span>
+            <span class="keys"><i></i><i></i></span>
+          </div>
+
+          <div class="popup">
+            <div class="ph"><span class="pt">Pixel Ruler</span><span class="pv">v1.0.0</span></div>
+            <div class="cta">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 12L12 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M2 8.5V12h3.5M8.5 2H12v3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Measure this page
+            </div>
+            <div class="hint">Drag anywhere on the page to get the distance in pixels. Press Esc to turn it off.</div>
+          </div>
+
+          <!-- 3: the pinned icon (right 97px, top 24px inside the frame) -->
+          <span class="num" style="right: 135px; top: -39px;">3</span>
+          <svg class="arrow" style="right: 76px; top: -32px;" width="86" height="62" viewBox="0 0 86 62" fill="none" aria-hidden="true">
+            <path d="M21 14C39 17 58 23 65 38" stroke="#e5484d" stroke-width="3.4" stroke-linecap="round"/>
+            <path d="M65 38L56.3 29.6M65 38L65.5 26" stroke="#e5484d" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="step target-block">
+      <h2>Try it right here</h2>
+      <p>This box is exactly 320 × 180 pixels. Measure it and see whether the ruler agrees.</p>
+      <div class="target-wrap"><div class="target">320 × 180</div></div>
+      <p class="target-note">Hold Shift to keep the line straight. Arrow keys nudge the edge by one pixel.</p>
+    </section>
+
+    <footer>
+      Nothing you measure ever leaves your browser — <a href="../privacy/">privacy policy</a>.
+    </footer>
+  </div>
+</body>
+</html>

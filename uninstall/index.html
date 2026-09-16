@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pixel Ruler was removed</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&display=swap">
+<!-- Paste your Google Analytics tag here -->
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  :root {
+    --bg: #131824;
+    --surface: #1b2231;
+    --border: #2b3446;
+    --text: #eef2f8;
+    --muted: #97a3b8;
+    --accent: #6ea8ff;
+    --accent-ink: #0f1420;
+  }
+  body {
+    background: var(--bg); color: var(--text);
+    font: 17px/1.55 "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+    font-synthesis: none;
+  }
+  .shell { max-width: 640px; margin: 0 auto; padding: 56px 24px 80px; }
+
+  .brand { display: flex; align-items: center; gap: 13px; margin-bottom: 36px; }
+  .mark {
+    position: relative; width: 40px; height: 40px; border-radius: 22%;
+    background: #2f68e8; flex: 0 0 auto; overflow: hidden;
+  }
+  .mark b { position: absolute; left: 11%; right: 11%; top: 34%; bottom: 34%; border-radius: 7%; background: #f5f8fd; }
+  .mark i { position: absolute; top: 34%; width: 3.6%; background: #2f68e8; }
+  .mark i:nth-of-type(1) { left: 24%; height: 10%; }
+  .mark i:nth-of-type(2) { left: 37%; height: 10%; }
+  .mark i:nth-of-type(3) { left: 50%; height: 17%; }
+  .mark i:nth-of-type(4) { left: 63%; height: 10%; }
+  .mark i:nth-of-type(5) { left: 76%; height: 10%; }
+  .brand span { font-size: 15px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+
+  form { margin-top: 8px; }
+  .q { font-size: 14px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); }
+
+  .options { margin-top: 14px; display: flex; flex-direction: column; gap: 10px; }
+  .opt {
+    display: flex; align-items: center; gap: 12px; position: relative;
+    border: 1px solid var(--border); border-radius: 12px; background: var(--surface);
+    padding: 14px 16px; cursor: pointer; font-size: 16.5px;
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .opt:hover { border-color: #3c485e; }
+  .opt input { position: absolute; opacity: 0; }
+  .opt .dot {
+    width: 20px; height: 20px; border-radius: 50%; flex: 0 0 auto;
+    border: 2px solid #4a566c; transition: border-color .15s ease, border-width .15s ease;
+  }
+  .opt:has(input:checked) { border-color: var(--accent); background: #1e283a; }
+  .opt:has(input:checked) .dot { border-color: var(--accent); border-width: 6px; }
+  .opt:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .q2 { margin-top: 28px; }
+  textarea {
+    margin-top: 14px; width: 100%; min-height: 96px; resize: vertical;
+    border: 1px solid var(--border); border-radius: 12px; background: var(--surface);
+    color: var(--text); padding: 13px 16px; font: inherit; font-size: 16px;
+  }
+  textarea::placeholder { color: #7f8b9e; }
+  textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+
+  .send {
+    margin-top: 24px; padding: 14px 28px; border: 0; border-radius: 12px;
+    background: var(--accent); color: var(--accent-ink); font: inherit; font-size: 17px; font-weight: 700;
+    cursor: pointer;
+  }
+  .send:hover { background: #87b6ff; }
+  .send:disabled { opacity: .5; cursor: default; }
+
+  .note { margin-top: 28px; font-size: 14px; color: #7f8b9e; max-width: 56ch; }
+  .note a { color: var(--muted); }
+
+  .thanks { display: none; margin-top: 16px; }
+  .thanks h2 { font-size: 26px; letter-spacing: -0.01em; }
+  .thanks p { margin-top: 10px; color: var(--muted); max-width: 52ch; }
+  body[data-sent="true"] form { display: none; }
+  body[data-sent="true"] .thanks { display: block; }
+</style>
+</head>
+<body>
+  <div class="shell">
+    <div class="brand">
+      <span class="mark"><b></b><i></i><i></i><i></i><i></i><i></i></span>
+      <span>Pixel Ruler</span>
+    </div>
+
+    <form id="feedback">
+      <div class="q">Why did you remove it?</div>
+      <div class="options">
+        <label class="opt"><input type="radio" name="reason" value="The numbers looked wrong"><span class="dot"></span>The numbers looked wrong</label>
+        <label class="opt"><input type="radio" name="reason" value="I couldn't figure out how to use it"><span class="dot"></span>I couldn't figure out how to use it</label>
+        <label class="opt"><input type="radio" name="reason" value="It got in the way of the page"><span class="dot"></span>It got in the way of the page</label>
+        <label class="opt"><input type="radio" name="reason" value="I needed something it doesn't do"><span class="dot"></span>I needed something it doesn't do</label>
+        <label class="opt"><input type="radio" name="reason" value="Just cleaning up / don't need it anymore"><span class="dot"></span>Just cleaning up / don't need it anymore</label>
+      </div>
+
+      <div class="q q2">Anything else?</div>
+      <textarea name="details" placeholder="Optional — which page, what you measured, what you expected…"></textarea>
+
+      <button class="send" type="submit">Send feedback</button>
+    </form>
+
+    <div class="thanks">
+      <h2>Thank you. Every answer counts.</h2>
+      <p>Your settings and measurements lived in your browser and were deleted with the
+         extension — nothing was ever sent anywhere else.</p>
+    </div>
+
+    <p class="note">Your settings and measurements lived in your browser and were deleted with the
+       extension. Read what it did and did not store in the
+       <a href="../privacy/">privacy policy</a>.</p>
+  </div>
+
+<script>
+  // Responses land in a Google Form (and its linked Google Sheet).
+  // Fill these in from the form's pre-filled link; empty = submit is a no-op
+  // that still shows the thank-you state.
+  var FORM_ID = '';
+  var ENTRY_REASON = '';
+  var ENTRY_DETAILS = '';
+
+  document.getElementById('feedback').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var reason = (document.querySelector('input[name="reason"]:checked') || {}).value || '';
+    var details = document.querySelector('textarea[name="details"]').value.trim();
+
+    if (FORM_ID && (reason || details)) {
+      var data = new FormData();
+      if (ENTRY_REASON && reason) data.append(ENTRY_REASON, reason);
+      if (ENTRY_DETAILS && details) data.append(ENTRY_DETAILS, details);
+      fetch('https://docs.google.com/forms/d/e/' + FORM_ID + '/formResponse',
+        { method: 'POST', mode: 'no-cors', body: data }).catch(function () {});
+    }
+    document.body.dataset.sent = 'true';
+  });
+</script>
+</body>
+</html>

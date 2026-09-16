@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pixel Ruler Privacy Policy</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&display=swap">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  :root {
+    --bg: #131824;
+    --border: #2b3446;
+    --text: #eef2f8;
+    --muted: #97a3b8;
+    --accent: #6ea8ff;
+  }
+  body {
+    background: var(--bg); color: var(--text);
+    font: 17px/1.6 "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+    font-synthesis: none;
+  }
+  .shell { max-width: 680px; margin: 0 auto; padding: 56px 24px 96px; }
+  .brand { display: flex; align-items: center; gap: 13px; margin-bottom: 40px; }
+  .mark {
+    position: relative; width: 40px; height: 40px; border-radius: 22%;
+    background: #2f68e8; flex: 0 0 auto; overflow: hidden;
+  }
+  .mark b { position: absolute; left: 11%; right: 11%; top: 34%; bottom: 34%; border-radius: 7%; background: #f5f8fd; }
+  .mark i { position: absolute; top: 34%; width: 3.6%; background: #2f68e8; }
+  .mark i:nth-of-type(1) { left: 24%; height: 10%; }
+  .mark i:nth-of-type(2) { left: 37%; height: 10%; }
+  .mark i:nth-of-type(3) { left: 50%; height: 17%; }
+  .mark i:nth-of-type(4) { left: 63%; height: 10%; }
+  .mark i:nth-of-type(5) { left: 76%; height: 10%; }
+  .brand span { font-size: 15px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+  h1 { font-size: 32px; letter-spacing: -0.02em; line-height: 1.15; }
+  .updated { margin-top: 8px; font-size: 14px; color: #7f8b9e; }
+  h2 { margin-top: 36px; font-size: 20px; letter-spacing: -0.01em; }
+  p, li { margin-top: 10px; color: #c3cbd9; }
+  ul { margin-top: 10px; padding-left: 22px; }
+  strong { color: var(--text); }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 15px; color: var(--muted); }
+  a { color: var(--accent); }
+  footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--border); font-size: 14px; color: #7f8b9e; }
+</style>
+</head>
+<body>
+  <div class="shell">
+    <div class="brand">
+      <span class="mark"><b></b><i></i><i></i><i></i><i></i><i></i></span>
+      <span>Pixel Ruler</span>
+    </div>
+
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: September 16, 2026</p>
+
+    <p>Pixel Ruler is a browser extension that measures distances, element sizes and spacing
+       on a web page. This policy describes exactly what it does with data — which is nothing.</p>
+
+    <h2>What the extension collects</h2>
+    <p><strong>Nothing.</strong> It does not collect, transmit, store on any server, sell or share
+       any personal data, browsing history, page content or usage statistics. There are no
+       accounts, no sign-in, no tracking and no analytics inside the extension.</p>
+
+    <h2>Network requests</h2>
+    <p>The extension makes <strong>no network requests at all</strong>. Everything it runs ships
+       inside the package: no remote code, no content delivery networks, no remote fonts. You can
+       verify this yourself — open DevTools, switch to the Network tab and use the ruler.</p>
+
+    <h2>What it reads on a page</h2>
+    <p>Only geometry. To draw dimension lines the extension asks the browser where elements are
+       and how big they are (<code>getBoundingClientRect</code>, <code>getComputedStyle</code>).
+       It does not read page text, form fields, passwords or cookies, and it does not send the
+       address of the page anywhere.</p>
+
+    <h2>When it runs</h2>
+    <p>Only when you ask. The extension declares no host permissions and installs no permanent
+       scripts, so it is absent from every page until you click its toolbar icon or press its
+       keyboard shortcut. That click grants Chrome's <code>activeTab</code> permission for that
+       one tab, and the overlay is removed completely when you press Esc or navigate away.</p>
+
+    <h2>What stays in your browser</h2>
+    <ul>
+      <li><strong>Settings</strong> — four on/off switches, in <code>chrome.storage.sync</code>
+          (or <code>local</code> when sync is off), so they follow your Chrome profile.</li>
+      <li><strong>A first-run flag</strong> — remembers that the introduction card was shown.</li>
+      <li><strong>Your last measurement</strong> — width, height and coordinates, in
+          <code>chrome.storage.session</code>. It never reaches the disk and is cleared when the
+          browser closes.</li>
+    </ul>
+    <p>All of it is deleted when you remove the extension.</p>
+
+    <h2>Third parties</h2>
+    <p>None. The extension contains no third-party libraries that run at runtime, no advertising
+       and no affiliate code. This website (the welcome, removal and policy pages) is served by
+       GitHub Pages and may carry basic visit statistics; the extension itself does not.</p>
+
+    <h2>Children</h2>
+    <p>The extension is a developer tool and is not directed at children. Since it collects no
+       data at all, it holds no information about anyone, of any age.</p>
+
+    <h2>Changes</h2>
+    <p>If this policy ever changes, the new version appears on this page with a new date. A change
+       that would start collecting data would also require new permissions, which Chrome shows
+       you before the update installs.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about this policy: write through the support link on the Chrome Web Store
+       listing.</p>
+
+    <footer>Pixel Ruler — measure pixels on any web page.</footer>
+  </div>
+</body>
+</html>
