@@ -52,7 +52,7 @@
     </div>
 
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: September 16, 2026</p>
+    <p class="updated">Last updated: October 9, 2026</p>
 
     <p>Pixel Ruler is a browser extension that measures distances, element sizes and spacing
        on a web page. This policy describes exactly what it does with data — which is nothing.</p>
@@ -87,13 +87,26 @@
       <li><strong>Your last measurement</strong> — width, height and coordinates, in
           <code>chrome.storage.session</code>. It never reaches the disk and is cleared when the
           browser closes.</li>
+      <li><strong>A rating counter</strong> — up to five dates on which you measured something,
+          and whether you have answered or dismissed the rating row in the popup, in
+          <code>chrome.storage.local</code>. Five dates and three small numbers, nothing else:
+          no pages, no measurements, no identifiers. It is used for one decision only — whether
+          to show that row — and it is never sent anywhere.</li>
     </ul>
     <p>All of it is deleted when you remove the extension.</p>
 
     <h2>Third parties</h2>
-    <p>None. The extension contains no third-party libraries that run at runtime, no advertising
-       and no affiliate code. This website (the welcome, removal and policy pages) is served by
-       GitHub Pages and may carry basic visit statistics; the extension itself does not.</p>
+    <p>The extension contains no third-party libraries that run at runtime, no advertising and
+       no affiliate code, and it still makes no network requests of any kind.</p>
+    <p>This website is a different thing from the extension, and it does use two outside
+       services. It is served by GitHub Pages and carries a privacy-friendly visit counter
+       (Umami), which records page views without cookies and without building a profile of
+       you. Two of its pages — the removal page and the feedback page — carry a form, and
+       submitting one sends your answers to Google Forms, where we read them. Those forms are
+       entirely voluntary: nothing is sent unless you fill one in and press the button.</p>
+    <p>On the feedback page one of the fields is your email address. It is optional, we ask for
+       it only so we can reply to you, and we do not add it to any mailing list. Leave it empty
+       and we will have no way to contact you, which is a perfectly good choice.</p>
 
     <h2>Children</h2>
     <p>The extension is a developer tool and is not directed at children. Since it collects no
