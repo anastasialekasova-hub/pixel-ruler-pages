@@ -52,7 +52,7 @@
     </div>
 
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: October 9, 2026</p>
+    <p class="updated">Last updated: October 15, 2026</p>
 
     <p>Pixel Ruler is a browser extension that measures distances, element sizes and spacing
        on a web page. This policy describes exactly what it does with data — which is nothing.</p>
@@ -78,6 +78,23 @@
        scripts, so it is absent from every page until you click its toolbar icon or press its
        keyboard shortcut. That click grants Chrome's <code>activeTab</code> permission for that
        one tab, and the overlay is removed completely when you press Esc or navigate away.</p>
+
+    <h2>Permissions</h2>
+    <p>The extension asks Chrome for three permissions and nothing else. It declares no host
+       permissions, which is why Chrome shows no permission warning when you install it.</p>
+    <ul>
+      <li><strong><code>activeTab</code></strong> — lets the extension reach the tab you are
+          looking at, and only after you click its toolbar icon or press its keyboard shortcut.
+          The access covers that one tab and lapses when you navigate away or close it.</li>
+      <li><strong><code>scripting</code></strong> — what puts the ruler on the page once you
+          have asked for it: the extension calls <code>chrome.scripting.executeScript</code> to
+          add the measuring overlay to that tab. The code it adds ships inside the extension
+          package; nothing is downloaded. The extension declares no content scripts, so it runs
+          on no page you have not asked it to, and it cannot use this permission on a tab
+          <code>activeTab</code> has not opened to it.</li>
+      <li><strong><code>storage</code></strong> — keeps your settings and the few small values
+          listed in the next section in your browser. Nothing in it is sent anywhere.</li>
+    </ul>
 
     <h2>What stays in your browser</h2>
     <ul>
